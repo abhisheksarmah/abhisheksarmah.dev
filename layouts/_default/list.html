@@ -1,0 +1,108 @@
+{{ define "style"}}
+<style>
+
+  .markup>:not(:last-child), .markup>details>summary {
+      margin-bottom: 1.5rem;
+  }
+
+  .markup .highlight pre {
+      display: block;
+      overflow-x: auto;
+      padding: 1.5rem;
+      background-color: #1a202c;
+      color: #f7fafc;
+      line-height: 2;
+  }
+
+  @media (min-width: 640px) {
+    .markup .highlight pre {
+        padding: 3rem;
+    }
+  }
+
+  .markup blockquote {
+    margin-left: -1rem;
+    margin-right: -1rem;
+    padding: 1rem;
+    background-color: #ebf4ff;
+    position: relative;
+    font-size: .925em;
+  }
+
+@media (min-width: 640px) {
+  .markup blockquote {
+    margin-left: 0;
+    margin-right: 0;
+    padding: 1.5rem;
+    border-bottom-width: 5px;
+    border-color: #c3dafe;
+  }
+}
+
+  .h2, .h3, .markup h2, .markup h3 {
+    margin-top: 3rem;
+  }
+
+.h1, .h2, .markup h1, .markup h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    line-height: 1.25;
+}
+
+@media (min-width: 768px) {
+  .markup blockquote {
+    padding: 2rem;
+  }
+}
+
+.markup>:not(pre) {
+    overflow-wrap: break-word;
+}
+
+.markup a {
+    color: #2b6cb0;
+    text-decoration: underline;
+}
+
+.pagination .page-link {
+    text-decoration: underline; 
+    color: #4a5568;
+}
+
+</style>
+{{end}}
+
+{{ define "main" }} 
+<main>
+  <div class="max-w-3xl sm:mx-auto mx-6 my-10 text-xl">
+    <h2 class="text-5xl font-bold tracking-wider">Articles</h2>
+
+    {{ range (.Paginator 1).Pages }}
+    <article class="py-12 last:pb-0 last:border-b-0 border-b border-gray-300">
+      {{ partial "post-header.html" . }}
+      <section class="markup">
+        {{ if .Truncated }}
+          {{ .Summary }}
+          <p>
+            <a href="{{ .RelPermalink }}">
+              Read more
+            </a>
+          </p>
+        {{ else if .Params.summary }}
+          {{ .Params.summary | markdownify }}
+          <p>
+            <a href="{{ .RelPermalink }}">
+              Read more
+            </a>
+          </p>
+        {{ else }}
+          {{ .Content }}
+        {{ end }}
+      </section>
+    </article> 
+    {{ end }} 
+
+    {{ partial "pagination.html" . }}
+</div>
+</main>
+{{ end }}

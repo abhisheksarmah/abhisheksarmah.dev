@@ -1,13 +1,40 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Document</title>
-    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-  </head>
-  <body>
-    <h1>Nice. It's looking good already.</h1>
-  </body>
-</html>
+{{ define "main" }} 
+<main class="max-w-6xl mx-auto my-10">
+  <div class="px-6">
+    <div class="sm:hidden mx-auto">
+      <img alt="Abhishek Sarmah Photo" class="rounded-full w-64 h-64 mx-auto mb-8" decoding="auto" sizes="600px" src="/img/me.jpg" style="object-fit: cover;"/>
+    </div>
+    <div class="flex -mx-2 items-center">
+      <div class="sm:w-3/5 px-2 md:font-light text-gray-700">
+        <div class="text-center">
+          <h1 class="text-3xl sm:text-5xl font-bold tracking-wide mb-6">
+              Hello! I'm Abhishek.
+          </h1> 
+          <p class="leading-snug sm:text-3xl text-2xl mb-8">  
+            Software Engineer from <a>Guwahati, India </a>
+            ,
+            <a href="https://laravel.com" class="border-b border-gray-900 pb-px md:pb-1 text-gray-900">Laravel</a>
+            and
+            <a href="https://vuejs.org" class="border-b border-gray-900 pb-px md:pb-1 text-gray-900">VueJs</a> 
+            enthuasist,   <br>
+            <a href="https://github.com/abhisheksarmah" class="border-b border-gray-900 pb-px md:pb-1 text-gray-900">open-source</a> 
+            maintainer,
+            <a href="/blog" class="border-b border-gray-900 pb-px md:pb-1 text-gray-900">blogger</a> <br>
+            and a food lover.
+          </p>   
+          <p class="mb-8 font-bold">
+            <a href="/about" class="border-b border-gray-900 pb-px md:pb-1 text-gray-900">More about me &rarr;</a>
+          </p> 
+          <p>
+            Photo by <a href="https://www.instagram.com/anurag_m_ozil/" class="border-b border-gray-900 pb-px md:pb-1 text-gray-900 text-sm">anurag_m_ozil</a>
+          </p>
+        </div>
+      </div>
+      <div class="hidden sm:block px-2 justify-between">
+        <img alt="Abhishek Sarmah Photo" class="FFVAD" decoding="auto" sizes="600px" src="/img/me.jpg" style="object-fit: cover;">
+      </div> 
+    </div>
+  </div>
+</main>   
+
+{{end}}

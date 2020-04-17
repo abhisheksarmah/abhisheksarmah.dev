@@ -1,0 +1,146 @@
+{{ define "meta" }}
+  <meta name="description" content="{{ .Summary | truncate 155 }}" />
+  <meta property="og:title" content="{{ .Title }}" />
+  <meta property="og:type" content="article" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:url" content="{{ .Permalink }}" />
+  <meta property="og:image" content="{{ "media/me.jpg" | absURL }}" />
+  <meta property="og:description" content="{{ .Summary | truncate 300 }}" />
+  <meta property="article:published_time" content="{{ .Date.Format "2006-01-02T15:04:05Z0700" }}" />
+  <meta property="article:modified_time" content="{{ .Lastmod.Format "2006-01-02T15:04:05Z0700" }}" />
+  <meta property="article:author" content="Sebastian De Deyne" />
+  {{ with .Keywords }}
+    <meta property="article:section" content="{{ index . 0 | title }}" />
+  {{ end }}
+{{ end }}
+
+{{ define "style"}}
+<style>
+
+  .markup>:not(:last-child), .markup>details>summary {
+      margin-bottom: 1.5rem;
+  }
+
+  .markup .highlight pre {
+      display: block;
+      overflow-x: auto;
+      padding: 1.5rem;
+      background-color: #1a202c;
+      color: #f7fafc;
+      line-height: 2;
+  }
+
+  @media (min-width: 640px) {
+    .markup .highlight pre {
+        padding: 3rem;
+    }
+  }
+
+  .markup blockquote {
+    margin-left: -1rem;
+    margin-right: -1rem;
+    padding: 1rem;
+    background-color: #ebf4ff;
+    position: relative;
+    font-size: .925em;
+  }
+
+@media (min-width: 640px) {
+  .markup blockquote {
+    margin-left: 0;
+    margin-right: 0;
+    padding: 1.5rem;
+    border-bottom-width: 5px;
+    border-color: #c3dafe;
+  }
+}
+
+  .h2, .h3, .markup h2, .markup h3 {
+    margin-top: 3rem;
+  }
+
+.h1, .h2, .markup h1, .markup h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    line-height: 1.25;
+}
+
+@media (min-width: 768px) {
+  .markup blockquote {
+    padding: 2rem;
+  }
+}
+
+.markup>:not(pre) {
+    overflow-wrap: break-word;
+}
+
+</style>
+{{end}}
+
+{{ define "main" }}
+<article class="mb-12 sm:mb-24 max-w-2xl mx-auto text-gray-900 leading-relaxed text-xl">
+  {{ partial "post-header.html" . }}
+  <section>
+    {{ if .Truncated }}
+      <div class="markup">
+        {{ .Summary }}
+      </div>
+      {{ if (ne .Params.ad false) }}
+        <div class="mt-6">
+          {{ partial "ad" }}
+        </div>
+      {{ end }}
+      <div class="markup max-w-2xl mx-auto">
+        {{ safeHTML (replace .Content .Summary "") }}
+      </div>
+    {{ else }}
+      {{ if (ne .Params.ad false) }}
+        <div class="mb-8">
+          {{ partial "ad" }}
+        </div>
+      {{ end }}
+      <div class="markup">
+        {{ .Content }}
+      </div>
+    {{ end }}
+  </section>
+  {{ if .Params.series }}
+    {{ with index $.Site.Data.series .Params.series }}
+      <div id="series" class="pt-8">
+        {{ partial "series.html" (dict "series" . "currentSlug" $.Page.Slug) }}
+      </div>
+    {{ end }}
+  {{ end }}
+</article>
+
+{{ $related := .Site.RegularPages.Related . | first 3 }}
+{{ $keywords := .Keywords }}
+{{ with $related }}
+  <hr>
+  <section class="mb-12 sm:mb-24">
+    <h2 class="h2 mt-6 mb-8">
+      More about {{ delimit $keywords ", " " & " }}
+    </h2>
+    <ul>
+      {{ range . }}
+        <li class="mb-6">
+          <p class="font-medium leading-snug">
+            <a href="{{ .RelPermalink }}">
+              {{ .Title }}
+            </a>
+          </p>
+          <p class="text-sm text-gray-700">
+            <a href="{{ .RelPermalink }}">
+              <time datetime="{{ .Date.Format "2006-01-02" }}">
+                {{ .Date.Format "January 2, 2006" }}
+              </time>
+            </a>
+          </p>
+        </li>
+      {{ end }}
+    </ul>
+  </section>
+{{ end }} 
+
+{{ end }}
