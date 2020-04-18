@@ -50,12 +50,12 @@
 
     {{end}}
   </head>
-	<body class="antialiased">
+	<body class="antialiased min-h-screen flex flex-col">
     {{ partial "nav.html" . }}
 	
-	{{ block "main" . }}
+    {{ block "main" . }}
   
-	{{end}}
+    {{end}} 
 
 	{{ block "footer" . }}
     	{{ partial "footer.html" . }}
