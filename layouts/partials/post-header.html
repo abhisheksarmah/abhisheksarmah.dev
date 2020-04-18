@@ -1,13 +1,13 @@
  
-{{ $post := . }}
+{{ $post := . }} 
 <header>
-  <h1 class="h1 mb-1">
-    <a href="{{ .RelPermalink }}" class="text-3xl tracking-wide">
+  <h1 class="h1 mb-1"> 
+    <a href="{{ if .Params.link }}{{ .Params.link }}{{else}}{{ $post.RelPermalink }}{{ end }}" class="text-3xl tracking-wide">
       {{ $post.Title }}
     </a>
   </h1>
   <p class="text-lg text-gray-700 mb-8">
-      <a href="{{ $post.RelPermalink }}">
+      <a href="{{ if .Params.link }}{{ .Params.link }}{{else}}{{ $post.RelPermalink }}{{ end }}">
         <time datetime="{{ $post.Date.Format "2006-01-02" }}">
           {{ $post.Date.Format "January 2, 2006" }}
         </time>

@@ -1,3 +1,5 @@
 baseURL = "https://abhisheksarmah.dev"
 languageCode = "en-us"
 title = "Abhishek Sarmah - Fullstack web developer, open-source maintainer, blogger"
+
+enableEmoji = true

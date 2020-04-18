@@ -1,0 +1,15 @@
+<p>
+    {{ if .Params.link }}
+	    <a href="{{ .Params.link }}">
+	      Read more
+	    </a>
+	    <span class="ml-2 text-gray-700 text-lg">
+	    	[{{index (split .Params.link "/") 2}}]
+	    </span>
+
+    {{else}}
+    <a href="{{ .RelPermalink }}">
+      Read more
+    </a>
+    {{end}}
+</p>

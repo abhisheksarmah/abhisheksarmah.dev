@@ -77,24 +77,18 @@
   <div class="max-w-3xl sm:mx-auto mx-6 my-10 text-xl">
     <h2 class="text-5xl font-bold tracking-wider">Articles</h2>
 
-    {{ range (.Paginator 1).Pages }}
+    {{ range (.Paginator 10).Pages }}
     <article class="py-12 last:pb-0 last:border-b-0 border-b border-gray-300">
-      {{ partial "post-header.html" . }}
+      {{ partial "post-header.html" . }} 
       <section class="markup">
         {{ if .Truncated }}
           {{ .Summary }}
-          <p>
-            <a href="{{ .RelPermalink }}">
-              Read more
-            </a>
-          </p>
+
+          {{ partial "read-more.html" . }}
         {{ else if .Params.summary }}
           {{ .Params.summary | markdownify }}
-          <p>
-            <a href="{{ .RelPermalink }}">
-              Read more
-            </a>
-          </p>
+
+          {{ partial "read-more.html" . }}
         {{ else }}
           {{ .Content }}
         {{ end }}
