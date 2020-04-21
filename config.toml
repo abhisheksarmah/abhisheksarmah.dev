@@ -12,6 +12,6 @@ enableEmoji = true
     lineNoStart = 1
     lineNos = false
     lineNumbersInTable = true
-    noClasses = false
+    noClasses = true
     style = "solarized-dark"
     tabWidth = 4
