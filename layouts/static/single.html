@@ -45,18 +45,13 @@
         margin: 0;
         font-family: "Aleo", serif;
       }
-    </style>
-    {{ block "style" . }}
-
-    {{end}}
+    </style> 
   </head>
   <body class="antialiased">
     {{ partial "nav.html" . }}
   
-  {{ .Content }} 
+    {{ .Content }} 
 
-  {{ block "footer" . }}
-      {{ partial "footer.html" . }}
-    {{end}}
+    {{ partial "footer.html" . }} 
   </body>
 </html>

@@ -8,6 +8,11 @@
   </h1>
   <p class="text-lg text-gray-700 mb-8">
       <a href="{{ if .Params.link }}{{ .Params.link }}{{else}}{{ $post.RelPermalink }}{{ end }}">
+        {{ if $post.Params.keywords }}
+          {{range $post.Params.keywords}}
+            #{{.}} 
+          {{end}} | 
+        {{ end }}
         <time datetime="{{ $post.Date.Format "2006-01-02" }}">
           {{ $post.Date.Format "January 2, 2006" }}
         </time>
@@ -15,6 +20,7 @@
           {{ $readingtime := div ($post.Content | countwords) 200 }}
           | {{ cond (lt $readingtime 1) 1 $readingtime }} min read
         {{ end }}
+        
         {{ if $post.Params.series }}
           {{ with $series := index $.Site.Data.series $post.Params.series }}
             | {{ $series.title }}

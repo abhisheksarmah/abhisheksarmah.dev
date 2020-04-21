@@ -43,6 +43,7 @@
     background-color: #ebf4ff;
     position: relative;
     font-size: .925em;
+    font-family: inherit;
   }
 
 @media (min-width: 640px) {
@@ -75,11 +76,27 @@
     overflow-wrap: break-word;
 }
 
+.markup>ul {
+    padding-left: 1.5rem;
+    list-style-type: disc;
+}
+
+.markup a {
+    color: #2b6cb0;
+    text-decoration: underline;
+}
+
+.markup p > code, .markup p > strong > code {
+    padding: 2px 4px;
+    background-color: #e2e8f0;
+    font-family: inherit;
+} 
+
 </style>
 {{end}}
 
 {{ define "main" }}
-<article class="px-6 mb-12 sm:mb-24 max-w-2xl mx-auto text-gray-900 leading-relaxed text-xl">
+<article class="px-6 mb-12 sm:mb-24 max-w-3xl sm:mx-auto text-gray-900 leading-relaxed text-xl">
   {{ partial "post-header.html" . }}
   <section>
     {{ if .Truncated }}
@@ -91,7 +108,7 @@
           {{ partial "ad" }}
         </div>
       {{ end }}
-      <div class="markup max-w-2xl mx-auto">
+      <div class="markup max-w-3xl sm:mx-auto">
         {{ safeHTML (replace .Content .Summary "") }}
       </div>
     {{ else }}

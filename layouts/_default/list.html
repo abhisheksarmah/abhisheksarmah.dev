@@ -27,6 +27,7 @@
     background-color: #ebf4ff;
     position: relative;
     font-size: .925em;
+    font-family: inherit;
   }
 
 @media (min-width: 640px) {
@@ -59,15 +60,21 @@
     overflow-wrap: break-word;
 }
 
+.markup>ul {
+    padding-left: 1.5rem;
+    list-style-type: disc;
+}
+
 .markup a {
     color: #2b6cb0;
     text-decoration: underline;
 }
 
-.pagination .page-link {
-    text-decoration: underline; 
-    color: #4a5568;
-}
+.markup p > code, .markup p > strong > code {
+    padding: 2px 4px;
+    background-color: #e2e8f0;
+    font-family: inherit;
+} 
 
 </style>
 {{end}}

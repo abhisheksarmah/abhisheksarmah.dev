@@ -3,3 +3,15 @@ languageCode = "en-us"
 title = "Abhishek Sarmah - Fullstack web developer, open-source maintainer, blogger"
 
 enableEmoji = true
+
+[markup]
+  [markup.highlight]
+    codeFences = true
+    guessSyntax = true
+    hl_Lines = ""
+    lineNoStart = 1
+    lineNos = false
+    lineNumbersInTable = true
+    noClasses = true
+    style = "solarized-dark"
+    tabWidth = 4
