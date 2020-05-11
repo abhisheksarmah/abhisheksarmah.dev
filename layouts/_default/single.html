@@ -1,38 +1,41 @@
 {{ define "meta" }}
-  <meta name="description" content="{{ .Summary | truncate 155 }}" />
-  <meta property="og:title" content="{{ .Title }}" />
-  <meta property="og:type" content="article" />
-  <meta property="og:locale" content="en_US" />
-  <meta property="og:url" content="{{ .Permalink }}" />
-  <meta property="og:image" content="{{ "img/me_cover.png" | absURL }}" />
-  <meta property="og:description" content="{{ .Summary | truncate 300 }}" />
-  <meta property="article:published_time" content="{{ .Date.Format "2006-01-02T15:04:05Z0700" }}" />
-  <meta property="article:modified_time" content="{{ .Lastmod.Format "2006-01-02T15:04:05Z0700" }}" />
-  <meta property="article:author" content="Abhishek Sarmah" />
-  {{ with .Keywords }}
-    <meta property="article:section" content="{{ index . 0 | title }}" />
-  {{ end }}
+<meta name="description" content="{{ .Summary | truncate 155 }}" />
+<meta property="og:title" content="{{ .Title }}" />
+<meta property="og:type" content="article" />
+<meta property="og:locale" content="en_US" />
+<meta property="og:url" content="{{ .Permalink }}" />
+<meta property="og:image" content="{{ "img/me_cover.png" | absURL }}" />
+<meta property="og:description" content="{{ .Summary | truncate 300 }}" />
+<meta property="article:published_time" content="{{ .Date.Format "2006-01-02T15:04:05Z0700" }}" />
+<meta property="article:modified_time" content="{{ .Lastmod.Format "2006-01-02T15:04:05Z0700" }}" />
+<meta property="article:author" content="Abhishek Sarmah" />
+{{ with .Keywords }}
+<meta property="article:section" content="{{ index . 0 | title }}" />
+{{ end }}
 {{ end }}
 
 {{ define "style"}}
 <style>
-
-  .markup>:not(:last-child), .markup>details>summary {
-      margin-bottom: 1.5rem;
+  .markup>:not(:last-child),
+  .markup>details>summary {
+    margin-bottom: 1.5rem;
   }
 
-  .markup pre, .markup .highlight pre {
-      display: block;
-      overflow-x: auto;
-      padding: 1.5rem;
-      background-color: #1a202c;
-      color: #f7fafc;
-      line-height: 2;
+  .markup pre,
+  .markup .highlight pre {
+    display: block;
+    overflow-x: auto;
+    padding: 1.5rem;
+    background-color: #1a202c;
+    color: #f7fafc;
+    line-height: 2;
   }
 
   @media (min-width: 640px) {
-    .markup pre, .markup .highlight pre {
-        padding: 3rem;
+
+    .markup pre,
+    .markup .highlight pre {
+      padding: 3rem;
     }
   }
 
@@ -46,52 +49,58 @@
     font-family: inherit;
   }
 
-@media (min-width: 640px) {
-  .markup blockquote {
-    margin-left: 0;
-    margin-right: 0;
-    padding: 1.5rem;
-    border-bottom-width: 5px;
-    border-color: #c3dafe;
+  @media (min-width: 640px) {
+    .markup blockquote {
+      margin-left: 0;
+      margin-right: 0;
+      padding: 1.5rem;
+      border-bottom-width: 5px;
+      border-color: #c3dafe;
+    }
   }
-}
 
-  .h2, .h3, .markup h2, .markup h3 {
+  .h2,
+  .h3,
+  .markup h2,
+  .markup h3 {
     margin-top: 3rem;
   }
 
-.h1, .h2, .markup h1, .markup h2 {
+  .h1,
+  .h2,
+  .markup h1,
+  .markup h2 {
     font-size: 1.5rem;
     font-weight: 700;
     line-height: 1.25;
-}
-
-@media (min-width: 768px) {
-  .markup blockquote {
-    padding: 2rem;
   }
-}
 
-.markup>:not(pre) {
+  @media (min-width: 768px) {
+    .markup blockquote {
+      padding: 2rem;
+    }
+  }
+
+  .markup>:not(pre) {
     overflow-wrap: break-word;
-}
+  }
 
-.markup>ul {
+  .markup>ul {
     padding-left: 1.5rem;
     list-style-type: disc;
-}
+  }
 
-.markup a {
+  .markup a {
     color: #2b6cb0;
     text-decoration: underline;
-}
+  }
 
-.markup p > code, .markup p > strong > code {
+  .markup p>code,
+  .markup p>strong>code {
     padding: 2px 4px;
     background-color: #e2e8f0;
     font-family: inherit;
-} 
-
+  }
 </style>
 {{end}}
 
@@ -100,64 +109,35 @@
   {{ partial "post-header.html" . }}
   <section>
     {{ if .Truncated }}
-      <div class="markup">
-        {{ .Summary }}
-      </div>
-      {{ if (ne .Params.ad false) }}
-        <div class="mt-6">
-          {{ partial "ad" }}
-        </div>
-      {{ end }}
-      <div class="markup max-w-3xl sm:mx-auto">
-        {{ safeHTML (replace .Content .Summary "") }}
-      </div>
+    <div class="markup">
+      {{ .Summary }}
+    </div>
+    {{ if (ne .Params.ad false) }}
+    <div class="mt-6">
+      {{ partial "ad" }}
+    </div>
+    {{ end }}
+    <div class="markup max-w-3xl sm:mx-auto">
+      {{ safeHTML (replace .Content .Summary "") }}
+    </div>
     {{ else }}
-      {{ if (ne .Params.ad false) }}
-        <div class="mb-8">
-          {{ partial "ad" }}
-        </div>
-      {{ end }}
-      <div class="markup">
-        {{ .Content }}
-      </div>
+    {{ if (ne .Params.ad false) }}
+    <div class="mb-8">
+      {{ partial "ad" }}
+    </div>
+    {{ end }}
+    <div class="markup">
+      {{ .Content }}
+    </div>
     {{ end }}
   </section>
   {{ if .Params.series }}
-    {{ with index $.Site.Data.series .Params.series }}
-      <div id="series" class="pt-8">
-        {{ partial "series.html" (dict "series" . "currentSlug" $.Page.Slug) }}
-      </div>
-    {{ end }}
+  {{ with index $.Site.Data.series .Params.series }}
+  <div id="series" class="pt-8">
+    {{ partial "series.html" (dict "series" . "currentSlug" $.Page.Slug) }}
+  </div>
+  {{ end }}
   {{ end }}
 </article>
-
-{{ $related := .Site.RegularPages.Related . | first 3 }}
-{{ $keywords := .Keywords }}
-{{ with $related }}
-  <hr>
-  <section class="mb-12 sm:mb-24">
-    <h2 class="h2 mt-6 mb-8">
-      More about {{ delimit $keywords ", " " & " }}
-    </h2>
-    <ul>
-      {{ range . }}
-        <li class="mb-6">
-          <p class="font-medium leading-snug">
-            <a href="{{ .RelPermalink }}">
-              {{ .Title }}
-            </a>
-          </p>
-          <p class="text-sm text-gray-700">
-            <a href="{{ .RelPermalink }}">
-              <time datetime="{{ .Date.Format "2006-01-02" }}">
-                {{ .Date.Format "January 2, 2006" }}
-              </time>
-            </a>
-          </p>
-        </li>
-      {{ end }}
-    </ul>
-  </section>
-{{ end }} 
 
 {{ end }}
