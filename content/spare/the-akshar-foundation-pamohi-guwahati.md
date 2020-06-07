@@ -31,7 +31,7 @@ You could learn more about the Akshar Foundation [here](https://www.youtube.com/
 
 Checkout their official portfolio at, [https://www.aksharfoundation.org/](https://www.aksharfoundation.org/)
 
-At the end, I want to make a point that our education system should atleast co-operate with Akshar for making Indian Education System a to a higher standard around the globe.
+In the end, I want to make a point that our education system should at least co-operate with Akshar for making Indian Education System a to a higher standard around the globe.
 
 Hope, this article helps to play a small influence on our future kids.
 
